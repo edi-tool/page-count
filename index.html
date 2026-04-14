@@ -5,219 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>書籍ページ数・台数シミュレーター</title>
     <style>
-        /* 1. Visual Theme & Atmosphere / Typography Rules */
+        /* Base & Typography Rules */
         body {
-            font-family: メイリオ, Meiryo, "Hiragino Sans", ヒラギノ角ゴシック, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
-            font-size: 12px;
-            line-height: 1.4;
-            color: #595960; /* Text Primary */
-            background-color: #ffffff;
-            margin: 0;
-            padding: 16px;
+            font-family: noto-sans, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, arial, sans-serif;
+            background-color: #f8f6f2; /* Background: 温かみのあるオフホワイト */
+            color: #0f0f0f; /* Text Primary: ほぼ黒 */
+            letter-spacing: -0.4px; /* クックパッドの詰め組み */
+            line-height: 1.5;
+            font-feature-settings: "liga"; /* 合字 */
             word-break: break-all;
             overflow-wrap: break-word;
-            font-feature-settings: normal;
+            line-break: strict;
+            margin: 0;
+            padding: 40px 16px;
+            display: flex;
+            justify-content: center;
         }
 
-        /* 5. Layout Principles */
         .container {
-            max-width: 980px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 500px;
         }
 
-        /* Typography Hierarchy */
-        h1 {
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 1.0;
-            color: #333333;
-            margin: 0 0 16px 0;
-        }
-
-        .section-heading {
-            font-size: 22.5px;
-            font-weight: 600;
-            line-height: 1.0;
-            color: #333333;
-            margin: 0 0 16px 0;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #dddddd; /* Border */
-        }
-
-        .sub-heading {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.4;
-            color: #333333;
-            margin: 0 0 12px 0;
-        }
-
-        /* 4. Component Stylings: Cards */
-        .card {
-            background: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 0px; /* フラットデザイン */
-            padding: 12px;
+        /* Headings & Text Roles */
+        h2 {
+            font-size: 18px; /* Heading 1 */
+            font-weight: 600; /* 見出しは600で統一 */
+            line-height: 1.556;
+            margin-top: 0;
             margin-bottom: 16px;
         }
 
-        /* 4. Component Stylings: Inputs */
-        .form-group {
-            margin-bottom: 24px;
+        h3 {
+            font-size: 16px; /* Heading 2 */
+            font-weight: 600;
+            line-height: 1.5;
+            margin-top: 24px;
+            margin-bottom: 16px;
         }
 
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #333333;
+        p {
+            font-size: 16px; /* Body */
+            font-weight: 400;
+            margin-top: 0;
             margin-bottom: 8px;
         }
 
-        input[type="number"] {
-            background: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 3px;
-            padding: 6px 8px;
-            font-size: 12px;
-            height: 30px;
-            box-sizing: border-box;
-            width: 100%;
-            max-width: 240px;
+        small {
+            color: #757575; /* Text Secondary */
+            font-size: 12px; /* Caption */
+            line-height: 1.333;
         }
 
-        input[type="number"]:focus {
-            border: 1px solid #f09000; /* 食べログオレンジ */
-            outline: none;
-        }
-
-        /* 検索結果（オプション）のスタイリング */
-        .result-container {
-            margin-top: 16px;
-        }
-
-        .option-card {
-            background: #f5f5f5; /* Background Secondary */
-            border: 1px solid #dddddd;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-
-        .option-header {
-            font-size: 12px;
-            font-weight: 600;
-            color: #333333;
-            margin-bottom: 8px;
-            padding-bottom: 8px;
-            border-bottom: 1px dotted #cccccc;
-        }
-
-        /* 評価スコア専用の強調スタイル */
-        .score-highlight {
-            color: #f09000; /* Score High */
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        /* 補足テキスト */
-        .text-secondary {
-            color: #999999;
-            font-size: 10px; /* Caption */
-        }
-
-        /* 提案リスト */
-        ul.proposals {
-            margin: 0;
-            padding-left: 20px;
-            color: #595960;
-        }
-
-        ul.proposals li {
-            margin-bottom: 6px;
-        }
-
-        /* バッジ（食べログ風Secondaryボタン・バッジデザインを応用） */
-        .badge {
-            display: inline-block;
-            background: #ffffff;
-            color: #f09000;
-            border: 1px solid #f09000;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 10px;
-            font-weight: 700;
-            margin-left: 8px;
-            vertical-align: text-bottom;
-        }
-
-        /* フッター */
-        .site-footer {
-            border-top: 1px solid #dddddd;
-            margin-top: 32px;
-            padding-top: 16px;
-            text-align: center;
-            font-size: 10px; /* Caption */
-            color: #999999; /* Text Secondary */
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>書籍ページ数・台数シミュレーター</h1>
-
-        <div class="card">
-            <h2 class="section-heading">台数計算</h2>
-            
-            <div class="form-group">
-                <label for="pageInput">暫定のページ数を入力してください</label>
-                <input type="number" id="pageInput" placeholder="例: 150" oninput="calculate()">
-            </div>
-
-            <div id="results" class="result-container">
-                </div>
-        </div>
-
-        <footer class="site-footer">
-            &copy; 2026 ISHIKAWA Natsuki
-        </footer>
-    </div>
-
-    <script>
-        function calculate() {
-            const p = parseInt(document.getElementById('pageInput').value);
-            const resultsDiv = document.getElementById('results');
-            
-            if (isNaN(p) || p <= 0) {
-                resultsDiv.innerHTML = '';
-                return;
-            }
-
-            const units = [16, 8]; // 16ページ(全台)、8ページ(半台)
-            let html = '<h3 class="sub-heading">おすすめのページ数</h3>';
-
-            units.forEach(unit => {
-                const low = Math.floor(p / unit) * unit;
-                const high = Math.ceil(p / unit) * unit;
-                
-                html += `<div class="option-card">
-                    <div class="option-header">${unit}ページ単位（${unit === 16 ? '全台' : '半台'}刻み）</div>`;
-                
-                if (low === p) {
-                    html += `現在、ちょうど <span class="score-highlight">${p}</span> ページ (${p / unit}台) です！<span class="badge">ぴったり</span>`;
-                } else {
-                    html += `<ul class="proposals">`;
-                    if (low > 0) {
-                        html += `<li>案A: <span class="score-highlight">${low}</span> ページ (${low / unit}台) <span class="text-secondary">... ${p - low}ページ減らす</span></li>`;
-                    }
-                    html += `<li>案B: <span class="score-highlight">${high}</span> ページ (${high / unit}台) <span class="text-secondary">... ${high - p}ページ増やす</span></li>`;
-                    html += `</ul>`;
-                }
-                html += `</div>`;
-            });
-
-            resultsDiv.innerHTML = html;
-        }
-    </script>
-</body>
-</html>
+        /* Components: Cards */
+        .card {
+            background-color: #fff; /* Surface */
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.0
