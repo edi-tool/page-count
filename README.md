@@ -13,9 +13,9 @@ https://edi-tool.github.io/page-count/
 
 本プロジェクトの開発にあたり、以下の資料およびデータを参照・利用させていただきました。
 
-### デザイン・構成
+### デザイン
 * [kzhrknt/awesome-design-md-jp](https://github.com/kzhrknt/awesome-design-md-jp)
-  * 本ツール（index）のデザインおよび構成の参考
+  * 本ツール（index）のデザインの参考
 
 ---
 © 2026 ISHIKAWA, Natsuki
