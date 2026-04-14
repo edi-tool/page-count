@@ -63,4 +63,107 @@
             border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.0
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Level 1 Shadow */
+        }
+
+        /* Components: Inputs */
+        input {
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 16px;
+            height: 40px;
+            box-sizing: border-box;
+            font-family: inherit;
+            letter-spacing: inherit;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+            border: 1px solid #f28c06; /* Cookpad Orange Focus */
+        }
+
+        input::placeholder {
+            color: #bdbdbd; /* Text Disabled */
+        }
+
+        /* Results Display */
+        .result {
+            margin-top: 24px;
+        }
+
+        .option {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .option strong {
+            display: block;
+            font-size: 14px; /* Label */
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #0f0f0f;
+        }
+
+        .option-item {
+            margin-bottom: 4px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #f28c06; /* Cookpad Orange */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>台数計算シミュレーター</h2>
+            <p>暫定のページ数を入力してください：</p>
+            <input type="number" id="pageInput" placeholder="例: 150" oninput="calculate()">
+
+            <div id="results" class="result">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const p = parseInt(document.getElementById('pageInput').value);
+            const resultsDiv = document.getElementById('results');
+            
+            if (isNaN(p) || p <= 0) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            const units = [16, 8]; // 16ページ(全台)、8ページ(半台)
+            let html = '<h3>おすすめのページ数</h3>';
+
+            units.forEach(unit => {
+                const low = Math.floor(p / unit) * unit;
+                const high = Math.ceil(p / unit) * unit;
+                
+                html += `<div class="option">
+                    <strong>${unit}ページ単位（${unit === 16 ? '全台' : '半台'}刻み）</strong>`;
+                
+                if (low === p) {
+                    html += `<div class="option-item">現在、ちょうど <span class="highlight">${p}ページ</span> (${p / unit}台) です！</div>`;
+                } else {
+                    html += `<div class="option-item">・案A: <span class="highlight">${low}ページ</span> (${low / unit}台) <br><small>... ${p - low}ページ減らす</small></div>`;
+                    html += `<div class="option-item">・案B: <span class="highlight">${high}ページ</span> (${high / unit}台) <br><small>... ${high - p}ページ増やす</small></div>`;
+                }
+                html += `</div>`;
+            });
+
+            resultsDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
