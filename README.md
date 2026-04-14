@@ -3,5 +3,7 @@
 
 ## 使い方
 
-- 以下のURLにアクセス。
-https://edi-tool.github.io/page-count/
+以下のURLにアクセス。
+[https://edi-tool.github.io/page-count/
+](https://edi-tool.github.io/page-count/
+)
