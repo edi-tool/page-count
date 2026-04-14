@@ -1,9 +1,4 @@
-# page-count
-台数のキリのよいページ数を提案します
+# 台数のキリのよいページ数を提案します
 
-## 使い方
+https://edi-tool.github.io/page-count/
 
-以下のURLにアクセス。
-[https://edi-tool.github.io/page-count/
-](https://edi-tool.github.io/page-count/
-)
