@@ -2,143 +2,86 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>書籍ページ数・台数シミュレーター</title>
     <style>
-        /* Base & Typography Rules */
-        body {
-            font-family: noto-sans, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, arial, sans-serif;
-            background-color: #f8f6f2; /* Background: 温かみのあるオフホワイト */
-            color: #0f0f0f; /* Text Primary: ほぼ黒 */
-            letter-spacing: -0.4px; /* クックパッドの詰め組み */
-            line-height: 1.5;
-            font-feature-settings: "liga"; /* 合字 */
-            word-break: break-all;
-            overflow-wrap: break-word;
-            line-break: strict;
+        /* ページ全体をFlexboxにしてフッターを最下部に固定するための設定 */
+        body { 
+            font-family: sans-serif; 
             margin: 0;
-            padding: 40px 16px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6; 
+            background-color: #f9f9fb; /* 少し背景色をつけるとカードが引き立ちます */
         }
 
+        /* メインコンテンツエリア */
         .container {
+            flex: 1; /* 余白を全て吸収しフッターを下に押し出す */
             width: 100%;
-            max-width: 500px;
-        }
-
-        /* Headings & Text Roles */
-        h2 {
-            font-size: 18px; /* Heading 1 */
-            font-weight: 600; /* 見出しは600で統一 */
-            line-height: 1.556;
-            margin-top: 0;
-            margin-bottom: 16px;
-        }
-
-        h3 {
-            font-size: 16px; /* Heading 2 */
-            font-weight: 600;
-            line-height: 1.5;
-            margin-top: 24px;
-            margin-bottom: 16px;
-        }
-
-        p {
-            font-size: 16px; /* Body */
-            font-weight: 400;
-            margin-top: 0;
-            margin-bottom: 8px;
-        }
-
-        small {
-            color: #757575; /* Text Secondary */
-            font-size: 12px; /* Caption */
-            line-height: 1.333;
-        }
-
-        /* Components: Cards */
-        .card {
-            background-color: #fff; /* Surface */
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Level 1 Shadow */
-        }
-
-        /* Components: Inputs */
-        input {
-            width: 100%;
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 16px;
-            height: 40px;
+            max-width: 500px; 
+            margin: 40px auto; 
+            padding: 0 20px;
             box-sizing: border-box;
-            font-family: inherit;
-            letter-spacing: inherit;
-            outline: none;
-            transition: border-color 0.2s ease;
         }
 
-        input:focus {
-            border: 1px solid #f28c06; /* Cookpad Orange Focus */
+        .card { 
+            background: #fff;
+            border: 1px solid #ddd; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
         }
 
-        input::placeholder {
-            color: #bdbdbd; /* Text Disabled */
+        /* H2と説明文のまとまりを調整 */
+        .header-group {
+            margin-bottom: 20px;
+        }
+        .header-group h2 {
+            margin: 0 0 5px 0; /* 下の余白を狭くしてpタグに近づける */
+            color: #333;
+        }
+        .header-group p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
         }
 
-        /* Results Display */
-        .result {
-            margin-top: 24px;
-        }
+        input { width: 100%; padding: 12px; font-size: 1.2rem; margin: 10px 0 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .result { margin-top: 20px; }
+        .option { background: #f4f8ff; padding: 15px; margin-bottom: 10px; border-left: 4px solid #007bff; border-radius: 0 4px 4px 0; }
+        .highlight { font-weight: bold; color: #007bff; }
 
-        .option {
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 12px;
-        }
-
-        .option strong {
-            display: block;
-            font-size: 14px; /* Label */
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #0f0f0f;
-        }
-
-        .option-item {
-            margin-bottom: 4px;
-        }
-
-        .highlight {
-            font-weight: 600;
-            color: #f28c06; /* Cookpad Orange */
+        /* フッターのスタイル */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.85rem;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="card">
-            <h2>ページ調整さん</h2>
-            <span class="subtitle">(ページ数・台数シュミレーション)</span>
+            <div class="header-group">
+                <h2>台数計算シミュレーター</h2>
+                <p>暫定のページ数を入力してください：</p>
+            </div>
             
-            <p>暫定のページ数を入力してください：</p>
             <input type="number" id="pageInput" placeholder="例: 150" oninput="calculate()">
 
             <div id="results" class="result">
-                </div>
+            </div>
         </div>
     </div>
-    
+
     <footer>
-        &copy; 2026 ISHIKAWA Natsuki
+        &copy; 2026 台数計算シミュレーター
     </footer>
-    
+
     <script>
         function calculate() {
             const p = parseInt(document.getElementById('pageInput').value);
@@ -157,13 +100,13 @@
                 const high = Math.ceil(p / unit) * unit;
                 
                 html += `<div class="option">
-                    <strong>${unit}ページ単位（${unit === 16 ? '全台' : '半台'}刻み）</strong>`;
+                    <strong>${unit}ページ単位（${unit === 16 ? '全台' : '半台'}刻み）</strong><br>`;
                 
                 if (low === p) {
-                    html += `<div class="option-item">現在、ちょうど <span class="highlight">${p}ページ</span> (${p / unit}台) です！</div>`;
+                    html += `現在、ちょうど <span class="highlight">${p}ページ</span> (${p / unit}台) です！`;
                 } else {
-                    html += `<div class="option-item">・案A: <span class="highlight">${low}ページ</span> (${low / unit}台) <br><small>... ${p - low}ページ減らす</small></div>`;
-                    html += `<div class="option-item">・案B: <span class="highlight">${high}ページ</span> (${high / unit}台) <br><small>... ${high - p}ページ増やす</small></div>`;
+                    html += `・案A: <span class="highlight">${low}ページ</span> (${low / unit}台) <small>... ${p - low}ページ減らす</small><br>`;
+                    html += `・案B: <span class="highlight">${high}ページ</span> (${high / unit}台) <small>... ${high - p}ページ増やす</small>`;
                 }
                 html += `</div>`;
             });
