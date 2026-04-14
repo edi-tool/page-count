@@ -12,7 +12,6 @@ https://edi-tool.github.io/page-count/
 ## 使用技術
 - **Frontend**: HTML5, CSS3 (Modern CSS Reset / Flexbox)
 - **Scripting**: Vanilla JavaScript (No frameworks / No dependencies)
-- **Design**: Responsive Design, Typography-focused UI
 
 ## 仕様・計算根拠について
 
