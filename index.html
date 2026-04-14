@@ -64,8 +64,8 @@
             text-align: left;
         }
 
-        /* Input */
-        input[type="number"] {
+        /* Input & Select */
+        input[type="number"], select {
             width: 100%;
             padding: 8px 12px;
             margin-bottom: 8px;
@@ -74,14 +74,22 @@
             border-radius: 8px;
             font-size: 16px;
             height: 40px;
-            text-align: center;
             box-sizing: border-box;
             outline: none;
             transition: border-color 0.2s;
             font-family: inherit;
             letter-spacing: -0.4px;
         }
-        input[type="number"]:focus {
+        input[type="number"] {
+            text-align: center;
+        }
+        select {
+            cursor: pointer;
+            text-align: center;
+            /* 矢印の余白調整 */
+            padding-right: 24px; 
+        }
+        input[type="number"]:focus, select:focus {
             border-color: #f28c06;
         }
 
@@ -133,21 +141,33 @@
 
     <div class="container">
         <h2>ページ調整さん</h2>
-        <span class="subtitle">暫定のページ数から、台数のきりの良いページ数を提案します</span>
+        <span class="subtitle">暫定のページ数から、きりの良いページ数を提示します</span>
 
         <div class="instruction">暫定のページ数を入力</div>
-        <input type="number" id="pageInput" placeholder="例: 160" oninput="calculate()">
+        <input type="number" id="pageInput" placeholder="例: 150" oninput="calculate()">
+
+        <div class="instruction" style="margin-top: 12px;">紙の厚さ (mm)</div>
+        <select id="thicknessInput" onchange="calculate()">
+            <option value="0.09">0.09</option>
+            <option value="0.10">0.10</option>
+            <option value="0.11" selected>0.11 (標準)</option>
+            <option value="0.12">0.12 (標準)</option>
+            <option value="0.13">0.13 (標準)</option>
+            <option value="0.14">0.14</option>
+            <option value="0.15">0.15</option>
+        </select>
 
         <div id="results" class="result"></div>
     </div>
 
     <footer>
-        &copy; 2026 ISHIKAWA, Natsuki | MIT License
+        &copy; 2026 ISHIKAWA, Natsuki
     </footer>
 
     <script>
         function calculate() {
             const p = parseInt(document.getElementById('pageInput').value);
+            const thickness = parseFloat(document.getElementById('thicknessInput').value);
             const resultsDiv = document.getElementById('results');
 
             if (isNaN(p) || p <= 0) {
@@ -155,6 +175,7 @@
                 return;
             }
 
+            // ページ数調整の計算
             const units = [16, 8]; // 16ページ(全台)、8ページ(半台)
             let html = '<h3>おすすめのページ数</h3>';
 
@@ -173,6 +194,16 @@
                 }
                 html += `</div>`;
             });
+
+            // 背幅の計算（並製本: ページ数 ÷ 2 × 紙厚 + 0.8）
+            const spineWidth = (p / 2) * thickness + 0.8;
+
+            html += `<h3 style="margin-top: 24px;">だいたいの背幅</h3>`;
+            html += `<div class="option">
+                <strong>並製本（入力した${p}ページの場合）</strong><br>
+                約 <span class="highlight" style="font-size: 16px;">${spineWidth.toFixed(2)} mm</span><br>
+                <small>計算式: ${p}p ÷ 2 × ${thickness.toFixed(2)}mm ＋ 0.8mm</small>
+            </div>`;
 
             resultsDiv.innerHTML = html;
         }
