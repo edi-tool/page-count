@@ -3,5 +3,5 @@
 
 ## 使い方
 
-以下のURLにアクセス。
-https://napple02.github.io/page-count/
+- 以下のURLにアクセス。
+https://edi-tool.github.io/page-count/
