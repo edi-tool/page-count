@@ -1,7 +1,7 @@
 ---
 layout: null
 title: ページ数最適化・背幅概算ツール
-description: 書籍や雑誌、論文や冊子制作の入稿時に便利な、台数に合わせた最適なページ数の提案と、背幅の概算を一括で行うツールです。
+description: 書籍や雑誌、卒業論文や同人誌など冊子制作の入稿時に便利な、台数に合わせた最適なページ数の提案と、背幅の概算を一括で行うツールです。
 lang: ja
 ---
 <!DOCTYPE html>
@@ -10,16 +10,15 @@ lang: ja
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ページ数最適化・背幅概算ツール | ページ調整さん</title>
-    <meta name="description" content="書籍や雑誌、論文や冊子制作の入稿時に便利な、台数に合わせた最適なページ数の提案と、背幅の概算を一括で行うツールです。">
+    <title>{{ page.title }} | ページ調整さん</title>
+    <meta name="description" content="{{ page.description }}">
 
-    <link rel="canonical" href="https://あなたのドメイン.com/"> <link rel="icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <meta property="og:type" content="website">
-    <meta property="og:title" content="ページ数最適化・背幅概算ツール | ページ調整さん">
-    <meta property="og:description" content="台数に合わせた最適なページ数の提案と、背幅の概算を行うツールです。">
-    <meta property="og:url" content="https://あなたのドメイン.com/">
-    <meta property="og:site_name" content="ページ調整さん">
-    <meta property="og:image" content="https://あなたのドメイン.com/ogp-image.png"> <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="favicon.ico">
+    
+    <meta property="og:title" content="{{ page.title }} | ページ調整さん">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
 
     <style>
         /* Typography & Visual Theme */
