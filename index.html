@@ -191,13 +191,23 @@ lang: ja
     </footer>
 
     <script>
+        // 全角数字→半角に正規化
+        function normalizeNumber(str) {
+            return str.replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
+        }
+
         function calculate() {
-            const p = parseInt(document.getElementById('pageInput').value);
+            const raw = document.getElementById('pageInput').value;
+            const p = parseInt(normalizeNumber(raw));
             const thickness = parseFloat(document.getElementById('thicknessInput').value);
             const resultsDiv = document.getElementById('results');
 
-            if (isNaN(p) || p <= 0) {
+            if (!raw) {
                 resultsDiv.innerHTML = '';
+                return;
+            }
+            if (isNaN(p) || p <= 0) {
+                resultsDiv.innerHTML = '<div class="option" style="color:#c0392b;">正の整数を入力してください</div>';
                 return;
             }
 
