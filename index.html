@@ -13,12 +13,12 @@ lang: ja
     <title>{{ page.title }} | ページ調整さん</title>
     <meta name="description" content="{{ page.description }}">
 
-    <link rel="icon" href="favicon.ico">
-    
+    <link rel="icon" href="favicon.png" type="image/png">
+
     <meta property="og:title" content="{{ page.title }} | ページ調整さん">
     <meta property="og:description" content="{{ page.description }}">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
 
     <style>
         /* Typography & Visual Theme */
@@ -151,6 +151,17 @@ lang: ja
             text-align: center;
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ページ調整さん",
+      "description": "台数に合わせた最適なページ数の提案と背幅の概算を行うツール。",
+      "applicationCategory": "UtilitiesApplication",
+      "inLanguage": "ja",
+      "isAccessibleForFree": true
+    }
+    </script>
 </head>
 <body>
 
