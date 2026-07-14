@@ -9,6 +9,7 @@ lang: ja
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f6f2">
 
     <title>ページ調整さん | {{ page.title }}</title>
     <meta name="description" content="{{ page.description }}">
@@ -21,9 +22,26 @@ lang: ja
     <meta name="twitter:card" content="summary">
 
     <style>
+        /* ===== 共通デザイントークン（事務ツール5種で統一） ===== */
+        :root {
+            --bg: #f8f6f2;
+            --surface: #fff;
+            --border: #e0e0e0;
+            --text: #0f0f0f;
+            --text-sub: #757575;
+            --accent: #f28c06;
+            --accent-dark: #d97a00;
+            --accent-soft: #fff8f0;
+            --danger: #e53935;
+        }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
         /* Typography & Visual Theme */
         body {
-            font-family: noto-sans, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, Roboto, sans-serif;
             background-color: #f8f6f2;
             color: #0f0f0f;
             line-height: 1.5;
@@ -105,7 +123,7 @@ lang: ja
             padding-right: 24px; 
         }
         input[type="number"]:focus, select:focus {
-            border-color: #f28c06;
+            border-color: var(--accent);
         }
 
         /* Results */
@@ -124,11 +142,12 @@ lang: ja
         .option {
             background-color: #f8f6f2;
             border: 1px solid #e0e0e0;
-            border-left: 4px solid #f28c06;
+            border-left: 4px solid var(--accent);
             border-radius: 8px;
             padding: 12px;
             margin-bottom: 8px;
             font-size: 14px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
         }
         .option strong {
             font-size: 13px;
@@ -136,7 +155,7 @@ lang: ja
         }
         .highlight {
             font-weight: 700;
-            color: #f28c06;
+            color: var(--accent);
         }
         small {
             font-size: 12px;
@@ -170,7 +189,7 @@ lang: ja
         <span class="subtitle">暫定のページ数から、台数の<strong>きりの良いページ数</strong>と、<strong>だいたいの背幅</strong>を表示します</span>
 
         <div class="instruction">暫定のページ数を入力</div>
-        <input type="number" id="pageInput" placeholder="例: 160" oninput="calculate()">
+        <input type="number" id="pageInput" placeholder="例: 160" min="1" step="1" inputmode="numeric" oninput="calculate()">
 
         <div class="instruction" style="margin-top: 12px;">紙の厚さ (mm)を選択</div>
         <select id="thicknessInput" onchange="calculate()">
