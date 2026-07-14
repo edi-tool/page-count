@@ -13,12 +13,17 @@ lang: ja
 
     <title>ページ調整さん | {{ page.title }}</title>
     <meta name="description" content="{{ page.description }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/">
 
     <link rel="icon" href="favicon.png" type="image/png">
 
-    <meta property="og:title" content="{{ page.title }} | ページ調整さん">
-    <meta property="og:description" content="{{ page.description }}">
     <meta property="og:type" content="website">
+    <meta property="og:title" content="ページ調整さん | {{ page.title }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/">
+    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/favicon.png">
+    <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary">
 
     <style>
