@@ -11,7 +11,7 @@ lang: ja
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f8f6f2">
 
-    <title>ページ調整さん | {{ page.title }}</title>
+    <title>{{ page.title }} | ページ調整さん</title>
     <meta name="description" content="{{ page.description }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/">
@@ -19,7 +19,7 @@ lang: ja
     <link rel="icon" href="favicon.png" type="image/png">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="ページ調整さん | {{ page.title }}">
+    <meta property="og:title" content="{{ page.title }} | ページ調整さん">
     <meta property="og:description" content="{{ page.description }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/">
     <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/ogp.png">
@@ -246,15 +246,53 @@ lang: ja
         footer a:hover { color: var(--accent-text); }
     </style>
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "ページ調整さん",
-      "description": "台数に合わせた最適なページ数の提案と背幅の概算を行うツール。",
-      "applicationCategory": "UtilitiesApplication",
-      "inLanguage": "ja",
-      "isAccessibleForFree": true
-    }
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://edi-tool.github.io/page-count/#app",
+            "name": "ページ調整さん",
+            "alternateName": "{{ page.title }}",
+            "url": "https://edi-tool.github.io/page-count/",
+            "description": "台数に合わせた最適なページ数の提案と背幅の概算を行うツール。",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Web",
+            "browserRequirements": "Requires JavaScript",
+            "inLanguage": "ja",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "JPY"
+            },
+            "image": "https://edi-tool.github.io/page-count/ogp.png",
+            "isPartOf": {
+              "@id": "https://edi-tool.github.io/#website"
+            },
+            "publisher": {
+              "@id": "https://edi-tool.github.io/#organization"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "edi-tool",
+                "item": "https://edi-tool.github.io/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "ページ調整さん",
+                "item": "https://edi-tool.github.io/page-count/"
+              }
+            ]
+          }
+        ]
+      }
     </script>
 </head>
 <body>
