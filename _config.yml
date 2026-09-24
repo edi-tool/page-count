@@ -7,3 +7,10 @@ show_downloads: false
 google_analytics: edi-tool
 # テーマによっては以下のようなフラグで制御します
 show_edit_on_github: false
+
+# Search Console の所有権確認ファイルを jekyll-sitemap の出力から除外する
+defaults:
+  - scope:
+      path: "googled180bd734463e748.html"
+    values:
+      sitemap: false
