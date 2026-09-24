@@ -1,5 +1,10 @@
 # 進捗: ページ調整さん（page-count）
 
+## 2026-09-24 セッション（SEO）
+
+- `<title>`・`og:title` をキーワード先頭（「{機能名} | {ツール名}」）に変更
+- 構造化データを `@graph` 化: WebApplication に `url`・`operatingSystem`・`offers`（無料）・`isPartOf`/`publisher`（ハブの `#website`/`#organization`）を追加し、BreadcrumbList（edi-tool > ツール）を追加
+
 ## 2026-07-14 セッション
 
 - **入力改善**: ページ数入力に `min="1" step="1" inputmode="numeric"` を追加
