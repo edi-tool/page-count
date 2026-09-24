@@ -9,6 +9,13 @@
 - **SEO（重要修正）**: `_config.yml` に `url`/`baseurl` が欠落しており canonical・sitemap が
   壊れていたため追加。index.html に `canonical`・`robots`・`og:url`・`og:image`・`og:locale` を補完。
 
+## 2026-09-24 セッション（UI/デザイン改善）
+
+- 入力を `type="text" inputmode="numeric"` に変更。`type=number` では全角数字が入らず `normalizeNumber` が効いていなかった。
+- 案A・案Bそれぞれに背幅を併記、増減の少ない案に「近い」バッジ。背幅計算は `spineWidth()` に関数化。
+- 見出しを h1 に、ラベルを `<label for>` に、結果に `aria-live`。カードを上寄せに（結果表示時の跳ね防止）。
+- **共通**: 見出しの上に「edi-tool」（ハブへのリンク）、フッターに「← edi-tool ツール一覧」を追加。`--text-sub` を #6b6b6b に濃くし、文字用アクセント `--accent-text: #b35f00` を追加（WCAG AA）。
+
 ## 関連
 
 - 組織ハブ: https://edi-tool.github.io/ （`edi-tool/edi-tool.github.io` リポジトリ）
