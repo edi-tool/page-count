@@ -301,6 +301,16 @@ lang: ja
 footer a[href="https://edi-tool.github.io/"] { display: inline-flex; align-items: center; min-height: 44px; }
 :root { --et-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); }
 .et-live { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* edi-tool 共通: ツールの説明（検索で見つけてもらうための本文） */
+.et-about { max-width: 48rem; margin: 3rem auto 0; padding: 1.5rem 1rem 0; border-top: 1px solid var(--border); color: var(--text); font-size: 0.9375rem; line-height: 1.8; text-align: left; }
+.et-about h2 { font-size: 1.0625rem; font-weight: 700; line-height: 1.5; margin: 1.75rem 0 0.5rem; color: var(--text); }
+.et-about h2:first-child { margin-top: 0; }
+.et-about p, .et-about ol, .et-about dl { margin: 0.25rem 0 0.75rem; color: var(--text-sub); }
+.et-about ol { list-style: decimal; padding-left: 1.5em; }
+.et-about li { margin: 0.125rem 0; }
+.et-about dt { font-weight: 700; margin-top: 0.75rem; color: var(--text); }
+.et-about dd { margin: 0.125rem 0 0; }
     </style>
     <script type="application/ld+json">
       {
@@ -382,6 +392,26 @@ footer a[href="https://edi-tool.github.io/"] { display: inline-flex; align-items
 
         <div id="results" class="result" aria-live="polite"></div>
     </div>
+
+    <section class="et-about" aria-labelledby="et-about-h">
+        <h2 id="et-about-h">ページ調整さんでできること</h2>
+        <p>書籍・雑誌・冊子の暫定ページ数から、印刷の台割り（16ページの全台・8ページの半台）に合うページ数を提案し、並製本（無線綴じ）の背幅を概算する無料ツールです。入稿前のページ数の調整や、表紙をデザインするときの背幅の見当づけに使えます。</p>
+        <h2>使い方</h2>
+        <ol>
+            <li>暫定のページ数を入れます（全角数字でも入ります）。</li>
+            <li>紙の厚さ（0.09〜0.15mm）を選びます。</li>
+            <li>前後のページ数の案と、それぞれの背幅が表示されます。増減が少ないほうに「近い」が付きます。</li>
+        </ol>
+        <h2>よくある質問</h2>
+        <dl>
+            <dt>背幅はどう計算していますか？</dt>
+            <dd>（ページ数 ÷ 2）× 紙の厚さ ＋ 0.8mm（表紙・糊代の補正）で概算しています。用紙の銘柄や製本方法で変わるため、入稿前に印刷所の束見本や計算値で確かめてください。</dd>
+            <dt>上製本（ハードカバー）にも使えますか？</dt>
+            <dd>現在は対応していません。</dd>
+            <dt>入力した数値は送信されますか？</dt>
+            <dd>送信されません。計算はすべてブラウザ内で行います。</dd>
+        </dl>
+    </section>
 
     <footer>
         <a href="https://edi-tool.github.io/"><span class="et-i et-i-chevron-left" aria-hidden="true"></span>edi-tool ツール一覧</a> | &copy; 2026 ISHIKAWA, Natsuki | MIT License
